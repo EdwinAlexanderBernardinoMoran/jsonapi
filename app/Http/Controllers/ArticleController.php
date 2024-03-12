@@ -31,7 +31,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->input('data.attributes')); Muestra todos los campo
+        $article = Article::create([
+            'title' => $request->input('data.attributes.title'),
+            'slug' => $request->input('data.attributes.slug'),
+            'content' => $request->input('data.attributes.content'),
+        ]);
+
+        return new ArticleResource($article);
     }
 
     /**
