@@ -32,6 +32,11 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'data.attributes.title' =>  ['required'],
+            'data.attributes.slug' =>  ['required'],
+            'data.attributes.content' =>  ['required'],
+        ]);
         // dd($request->input('data.attributes')); Muestra todos los campo
         $article = Article::create([
             'title' => $request->input('data.attributes.title'),
